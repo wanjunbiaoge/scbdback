@@ -1,5 +1,5 @@
 <template>
-  <div class="slideshow">
+  <div class="application">
     <el-button type="primary" @click="add">添加</el-button>
     <v-add :info="info" @updateData='updateData'></v-add>
     <v-list ref="list"></v-list>

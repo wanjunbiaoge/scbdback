@@ -1,6 +1,6 @@
 <template>
-  <div class="slideshow">
-    <el-button type="primary" @click="add">添加</el-button>
+  <div class="aboutPlatform">
+    <el-button type="primary" @click="add">编辑</el-button>
     <v-add :info="info" @updateData='updateData'></v-add>
     <v-list ref="list"></v-list>
   </div>
@@ -8,7 +8,6 @@
 <script>
 import vAdd from "./components/add";
 import vList from "./components/list";
-// import { mapGetters, mapActions } from "vuex";
 export default {
   props: [],
   components: {

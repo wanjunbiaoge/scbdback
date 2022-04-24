@@ -1,12 +1,15 @@
 <template>
   <div class="add">
     <el-dialog
-      title="轮播图添加"
+      title="应用领域添加"
       :visible.sync="info.isShow"
       width="40%"
       @close="cancel"
     >
       <el-form ref="form" :model="form" label-width="80px">
+        <el-form-item label="标题">
+          <el-input v-model="form.title"></el-input>
+        </el-form-item>
         <!-- 文件上传 -->
         <el-form-item label="图片">
           <div class="fileBox">
@@ -35,7 +38,8 @@ export default {
       //渲染图片路径
       imgUrl: "",
       form: {
-        file: ""
+        file: "",
+        title: ""
       }
     };
   },
@@ -64,8 +68,8 @@ export default {
         data: imgData
       });
       let uploadRes = await fetchData({
-        url: "/banner/insert",
-        data: { fileName: imgDataRes.data.fileName }
+        url: "/application_area/insert",
+        data: { fileName: imgDataRes.data.fileName, title: this.form.title }
       });
       if (uploadRes) {
         this.info.isShow = false;
@@ -81,27 +85,27 @@ export default {
 .add {
   .fileBox {
     position: relative;
-    width: 400px;
-    height: 150px;
-    background-color: skyblue;
+    width: 300px;
+    height: 400px;
+    border: 1px dashed skyblue;
   }
   .fileBox input {
     position: absolute;
-    width: 400px;
-    height: 150px;
+    width: 300px;
+    height: 400px;
     top: 0;
     left: 0;
     opacity: 0;
   }
   .fileBox h3 {
     font-size: 40px;
-    line-height: 150px;
+    line-height: 400px;
     text-align: center;
     margin: 0;
   }
   .fileBox img {
-    width: 400px;
-    height: 150px;
+    width: 300px;
+    height: 400px;
     position: absolute;
     top: 0;
     left: 0;

@@ -6,9 +6,9 @@
       row-key="id"
       border
     >
-      <el-table-column prop="seqNumber" width="80" label=" 排序号">
+      <el-table-column prop="id" width="80" label=" 序号">
       </el-table-column>
-      <!-- <el-table-column prop="title" label=" 轮播图标题"> </el-table-column> -->
+      <el-table-column prop="title" width="200" label="应用领域标题"> </el-table-column>
       <el-table-column label="图片">
         <template slot-scope="scope">
           <img :src="$imgUrl + scope.row.fileName" class="head_pic" />
@@ -42,13 +42,14 @@ export default {
   methods: {
     async getTableData() {
       let res = await fetchData({
-        url: "/banner/list",
+        url: "/application_area/list",
         data: {}
       });
       if (!res) return;
       this.list = res.data;
       this.list.map(item => {
         item.fileName = "/attachment/get_file/" + item.fileName;
+        
       });
     },
     del(id) {
@@ -58,7 +59,7 @@ export default {
         type: "warning"
       }).then(async () => {
         let res = await fetchData({
-          url: "/banner/delete/" + id
+          url: "/application_area/delete/" + id
         });
         if (!res) return;
         successAlert(res.outMsg);
@@ -75,7 +76,7 @@ export default {
 <style lang="less" scoped>
 .list {
   img {
-    width: 600px;
+    width: 200px;
     height: auto;
   }
 }

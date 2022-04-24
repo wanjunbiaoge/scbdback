@@ -15,7 +15,7 @@
               active-text-color 当前选中的菜单文字颜色
              -->
               <el-menu
-                default-active="/slideshow"
+                :default-active="$route.path"
                 class="el-menu-vertical-demo"
                 active-text-color="#ffd04b"
                 unique-opened
@@ -77,16 +77,57 @@ export default {
             },
             {
               id: 3,
-              title: "首页关于我们",
+              title: "关于我们",
               url: "/indexAboutUs"
-            }
+            },
+            {
+              id: 4,
+              title: "应用领域",
+              url: "/application"
+            },
+            {
+              id: 5,
+              title: "关于平台",
+              url: "/aboutPlatform"
+            },
+            {
+              id: 6,
+              title: "解决方案",
+              url: "/solution"
+            },
+            {
+              id: 7,
+              title: "成功案例",
+              url: "/successCase"
+            },
           ]
-        }
+        },
+        {
+          id: 11,
+          title: "关于我们",
+          url: "/",
+          children: [
+            {
+              id: 12,
+              title: "公司简介",
+              url: "/indexAboutUs"
+            },
+            {
+              id: 13,
+              title: "企业文化",
+              url: "/"
+            },{
+              id: 14,
+              title: "公司资质",
+              url: "/qualifications"
+            },
+          ]
+        },
       ]
     };
   },
   created() {
-    this.$router.push("slideshow");
+    // this.$router.push("slideshow");
   }
 };
 </script>

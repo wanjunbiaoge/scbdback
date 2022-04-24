@@ -22,9 +22,34 @@ export const indexRouter = [{
   },
   {
     path: "indexAboutUs",
-    name: "首页关于我们",
+    name: "关于我们",
     component: () => import("../page/home/indexAboutUs/indexAboutUs"),
-  }
+  },
+  {
+    path: "application",
+    name: "应用领域",
+    component: () => import("../page/home/application/application"),
+  },
+  {
+    path: "aboutPlatform",
+    name: "关于平台",
+    component: () => import("../page/home/aboutPlatform/aboutPlatform"),
+  },
+  {
+    path: "solution",
+    name: "解决方案",
+    component: () => import("../page/home/solution/solution"),
+  },
+  {
+    path: "successCase",
+    name: "成功案例",
+    component: () => import("../page/home/successCase/successCase"),
+  },
+  {
+    path: "qualifications",
+    name: "公司资质",
+    component: () => import("../page/aboutUs/qualifications/qualifications"),
+  },
 ]
 
 

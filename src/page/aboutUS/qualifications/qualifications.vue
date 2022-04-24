@@ -1,5 +1,5 @@
 <template>
-  <div class="slideshow">
+  <div class="qualifications">
     <el-button type="primary" @click="add">添加</el-button>
     <v-add :info="info" @updateData='updateData'></v-add>
     <v-list ref="list"></v-list>
@@ -28,6 +28,9 @@ export default {
     },
     updateData(){
       this.$refs.list.getTableData()
+    },
+    del(id){
+      this.$refs.list.del(id)
     }
   },
 

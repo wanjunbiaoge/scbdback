@@ -1,7 +1,7 @@
 <template>
   <div class="add">
     <el-dialog
-      title="轮播图添加"
+      title="关于平台编辑"
       :visible.sync="info.isShow"
       width="40%"
       @close="cancel"
@@ -35,7 +35,8 @@ export default {
       //渲染图片路径
       imgUrl: "",
       form: {
-        file: ""
+        file: "",
+        title: ""
       }
     };
   },
@@ -64,8 +65,8 @@ export default {
         data: imgData
       });
       let uploadRes = await fetchData({
-        url: "/banner/insert",
-        data: { fileName: imgDataRes.data.fileName }
+        url: "/server_config/update",
+        data: { value: imgDataRes.data.fileName, type: 'ABOUT_PLATFORM' }
       });
       if (uploadRes) {
         this.info.isShow = false;
@@ -81,27 +82,27 @@ export default {
 .add {
   .fileBox {
     position: relative;
-    width: 400px;
-    height: 150px;
-    background-color: skyblue;
+    width: 500px;
+    height: 300px;
+    border: 1px dashed skyblue;
   }
   .fileBox input {
     position: absolute;
-    width: 400px;
-    height: 150px;
+    width: 500px;
+    height: 300px;
     top: 0;
     left: 0;
     opacity: 0;
   }
   .fileBox h3 {
     font-size: 40px;
-    line-height: 150px;
+    line-height: 300px;
     text-align: center;
     margin: 0;
   }
   .fileBox img {
-    width: 400px;
-    height: 150px;
+    width: 500px;
+    height: 300px;
     position: absolute;
     top: 0;
     left: 0;

@@ -13,7 +13,7 @@ const fetchData = axios.create({
 
 fetchData.interceptors.response.use(function (response) {
   const res = response.data;
-  if ((res).outCode === 1) {
+  if (res.outCode === 1) {
     return res;
   } else {
     return warningAlert(res.outMsg);

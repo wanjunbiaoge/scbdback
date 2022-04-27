@@ -4,26 +4,19 @@
       <el-header class="beidoutitle">
         四川北斗卫星导航平台有限公司官网后台管理系统
       </el-header>
-      <el-container>
+      <el-container class="container">
         <el-aside width="200px" class="left">
           <el-row>
             <el-col>
-              <!-- 
-              default-active 当前激活的菜单
-              background-color 菜单背景颜色
-              text-color  文字颜色
-              active-text-color 当前选中的菜单文字颜色
-             -->
               <el-menu
                 :default-active="$route.path"
                 class="el-menu-vertical-demo"
                 active-text-color="#ffd04b"
                 unique-opened
                 router
+                background-color="#545c64"
+                text-color="#fff"
               >
-                <!-- <el-menu-item index="/">
-                  <span>首页</span>
-                </el-menu-item> -->
                 <div v-for="item in menus" :key="item.id">
                   <!-- 目录 -->
                   <el-submenu :index="item.id + ''" v-if="item.children">
@@ -99,7 +92,7 @@ export default {
               id: 7,
               title: "成功案例",
               url: "/successCase"
-            },
+            }
           ]
         },
         {
@@ -115,14 +108,40 @@ export default {
             {
               id: 13,
               title: "企业文化",
-              url: "/"
-            },{
+              url: "/culture"
+            },
+            {
               id: 14,
               title: "公司资质",
               url: "/qualifications"
-            },
+            }
           ]
         },
+        {
+          id: 21,
+          title: "产品展示",
+          url: "/product"
+        },
+        {
+          id: 31,
+          title: "新闻",
+          url: "/news"
+        },
+        {
+          id: 41,
+          title: "招聘",
+          url: "/employment"
+        },
+        {
+          id: 51,
+          title: "留言板",
+          url: "/messageBoard"
+        },
+        {
+          id: 61,
+          title: "用户管理",
+          url: "/user"
+        }
       ]
     };
   },
@@ -139,6 +158,11 @@ export default {
     font-size: 30px;
     line-height: 60px;
     background-color: #ccc;
+  }
+  .el-row,
+  .el-col,
+  .el-menu {
+    height: 100% !important;
   }
 }
 

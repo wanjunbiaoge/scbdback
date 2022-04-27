@@ -28,7 +28,6 @@ export default {
   },
   methods: {
     handleCurrentChange() {
-      console.log(1);
       this.getTableData();
     },
   },

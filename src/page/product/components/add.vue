@@ -12,13 +12,13 @@
         </el-form-item>
         <el-form-item label="类型">
           <el-select
-            v-model="form.aptitudeType"
+            v-model="form.type"
             placeholder="请选择类型"
             @change="changeType"
           >
             <!-- 这里需要展示状态层的列表 -->
             <el-option
-              v-for="item in aptitudeTypeList"
+              v-for="item in typeList"
               :key="item.value"
               :label="item.aptitudeName"
               :value="item.value"
@@ -45,9 +45,13 @@
 <script>
 import { successAlert } from "@/utils/alert";
 import fetchData from "@/utils/fetchData";
+import typeList from "./option";
 export default {
   props: ["info"],
   components: {},
+  created() {
+    this.typeList = typeList;
+  },
   data() {
     return {
       //渲染图片路径
@@ -58,22 +62,9 @@ export default {
       form: {
         fileName: "",
         title: "",
-        aptitudeType: ""
+        type: ""
       },
-      aptitudeTypeList: [
-        {
-          aptitudeName: "行业地位和荣誉",
-          value: "APTITUDE_STATUS"
-        },
-        {
-          aptitudeName: "管理体系认证证书",
-          value: "APTITUDE_CERTIFICATE"
-        },
-        {
-          aptitudeName: "知识产权专利",
-          value: "APTITUDE_PATENT"
-        }
-      ]
+      typeList: []
     };
   },
   computed: {},
@@ -85,7 +76,7 @@ export default {
       this.file.file = file;
     },
     changeType(value) {
-      this.form.aptitudeType = value;
+      this.form.type = value;
     },
     // 点击取消
     cancel() {
@@ -93,7 +84,7 @@ export default {
       this.info.isShow = false;
       this.imgUrl = "";
       this.form.title = "";
-      this.form.aptitudeType = "";
+      this.form.type = "";
     },
     async submit() {
       let imgData = new FormData();
@@ -105,16 +96,16 @@ export default {
         data: imgData
       });
       let uploadRes = await fetchData({
-        url: "/company_aptitude/insert",
+        url: "/product/insert",
         data: {
           fileName: imgDataRes.data.fileName,
           title: this.form.title,
-          aptitudeType: this.form.aptitudeType
+          type: this.form.type
         }
       });
       if (uploadRes) {
         this.info.isShow = false;
-        this.$emit("updateData");
+        this.$emit("updateData",this.form.type);
         successAlert(uploadRes.outMsg);
       }
     }

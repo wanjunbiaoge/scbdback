@@ -8,8 +8,6 @@ import './components/index.js'
 
 //引入过滤器
 import './filters/index.js'
-//引入store
-// import store from './store/index'
 //引入element-ui
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'

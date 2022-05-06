@@ -1,6 +1,7 @@
 <template>
   <div class="application">
     <el-button type="primary" @click="add">添加</el-button>
+    <span>图片大小：480×590</span>
     <v-add :info="info" @updateData='updateData'></v-add>
     <v-list ref="list"></v-list>
   </div>

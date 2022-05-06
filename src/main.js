@@ -13,6 +13,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
 Vue.prototype.$imgUrl = "http://192.168.10.224:8088/"
+// Vue.prototype.$imgUrl = "http://192.168.10.199:1090/"
 // Vue.prototype.$imgUrl = ""
 
 

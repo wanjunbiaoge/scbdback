@@ -1,6 +1,7 @@
 <template>
   <div class="qualifications">
     <el-button type="primary" @click="add">添加</el-button>
+    <span>荣誉图片大小：230×180，证书图片大小：300×210，证书图片大小：230×260，</span>
     <v-add :info="info" @updateData='updateData'></v-add>
     <v-list ref="list"></v-list>
   </div>

@@ -1,6 +1,7 @@
 <template>
   <div class="news">
     <el-button type="primary" @click="add">添加</el-button>
+    <span style="marginLeft:300px">图片大小：300×200，</span>
     <v-add ref="add" :info="info" @updateData="updateData"></v-add>
     <v-list ref="list" @edit="edit"></v-list>
   </div>

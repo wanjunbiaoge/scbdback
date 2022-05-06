@@ -23,6 +23,12 @@
         </div>
       </div>
     </div>
+    <div class="logo">
+      <img src="/static/logo_login.png" alt="" srcset="" />
+    </div>
+    <div class="sate">
+      <img src="/static/satellite.png" alt="" srcset="" />
+    </div>
   </div>
 </template>
 <script>
@@ -55,20 +61,22 @@ export default {
 </script>
 <style lang="less" scoped>
 .login {
+  position: relative;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to right, rgb(74, 41, 55), rgb(37, 51, 85));
+  background: url(/static/left_login.png) left top no-repeat,
+    url(/static/right_login.png) right top no-repeat;
+  background-size: 74% 100%, 26% 100%;
 }
-
 .box {
-  width: 430px;
+  width: 22%;
   height: 260px;
   background: white;
   border-radius: 5px;
   position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  right: 0;
+  transform: translate(-5%, -50%);
 }
 
 .center {
@@ -79,5 +87,19 @@ export default {
   width: 80%;
   margin: 0 auto;
   margin-bottom: 20px;
+}
+.logo {
+  img {
+    width: 400px;
+    margin-left: 30px;
+    margin-top: 30px;
+  }
+}
+.sate {
+  width: 74%;
+  img {
+    display: inherit;
+    margin: 0 auto;
+  }
 }
 </style>

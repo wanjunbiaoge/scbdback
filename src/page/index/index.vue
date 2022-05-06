@@ -2,7 +2,8 @@
   <div>
     <el-container class="wrap">
       <el-header class="beidoutitle">
-        四川北斗卫星导航平台有限公司官网后台管理系统
+        <!-- <img src="http://www.scbddh.com/style/default/image/header_login_black.png" alt="" srcset=""> -->
+        四川北斗后台管理系统
       </el-header>
       <el-container class="container">
         <el-aside width="200px" class="left">
@@ -14,8 +15,7 @@
                 active-text-color="#ffd04b"
                 unique-opened
                 router
-                background-color="#545c64"
-                text-color="#fff"
+                background-color="#eee"
               >
                 <div v-for="item in menus" :key="item.id">
                   <!-- 目录 -->
@@ -141,7 +141,12 @@ export default {
           id: 61,
           title: "用户管理",
           url: "/user"
-        }
+        },
+        {
+          id: 71,
+          title: "服务配置",
+          url: "/configPage"
+        },
       ]
     };
   },
@@ -157,7 +162,7 @@ export default {
   .beidoutitle {
     font-size: 30px;
     line-height: 60px;
-    background-color: #ccc;
+    background-color: #eee;
   }
   .el-row,
   .el-col,

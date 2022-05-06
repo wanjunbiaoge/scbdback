@@ -1,7 +1,7 @@
 <template>
   <div class="add">
     <el-dialog
-      title="轮播图添加"
+      title="添加"
       :visible.sync="info.isShow"
       width="40%"
       @close="cancel"

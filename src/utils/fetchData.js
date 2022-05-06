@@ -19,12 +19,10 @@ fetchData.interceptors.response.use(function (response) {
   const res = response.data;
   if (res.outCode === 1) {
     return res;
+  } else if (res.outCode === -1) {
+    router.push('/login')
   } else {
-    if (res.outCode == (-1)) {
-      router.push('/login')
-    }
     return warningAlert(res.outMsg);
   }
 });
-
 export default fetchData;

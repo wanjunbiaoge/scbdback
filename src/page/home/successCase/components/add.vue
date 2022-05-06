@@ -125,8 +125,11 @@ export default {
       this.editor = new E("#wangEdit");
       this.editor.config.height = 600;
       //图片处理
-      this.editor.config.uploadImgServer = BASE_URL + "/attachment/rtf_upload";
+      this.editor.config.uploadImgServer = BASE_URL + "attachment/rtf_upload";
       this.editor.config.uploadFileName = "files";
+      this.editor.config.uploadImgHeaders = {
+        "x-access-token": localStorage.getItem("x-access-token") // 设置请求头
+      };
       //~ 配置 onchange 回调函数
       this.editor.config.onchange = newHtml => {
         this.form.intro = newHtml;
@@ -139,7 +142,7 @@ export default {
     //!获取单条
     async getOne(id) {
       let res = await fetchData({
-        url: "/solution/list/" + id
+        url: "/success_case/list/" + id
       });
       for (let i in this.form) {
         for (let j in res.data) {

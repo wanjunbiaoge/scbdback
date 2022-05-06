@@ -1,7 +1,7 @@
 <template>
   <div class="add">
     <el-dialog
-      title="应用领域添加"
+      title="添加"
       :visible.sync="info.isShow"
       width="40%"
       @close="cancel"
@@ -56,7 +56,7 @@ export default {
       // 关闭add组件
       this.info.isShow = false;
       this.imgUrl = "";
-      this.form.file = "";
+      this.form.title = "";
     },
     async submit() {
       let imgData = new FormData();

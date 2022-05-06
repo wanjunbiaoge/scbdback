@@ -1,6 +1,7 @@
 <template>
   <div class="aboutPlatform">
     <el-button type="primary" @click="add">编辑</el-button>
+    <span>图片大小：1920×高度自适应</span>
     <v-add :info="info" @updateData='updateData'></v-add>
     <v-list ref="list"></v-list>
   </div>

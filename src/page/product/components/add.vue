@@ -1,7 +1,7 @@
 <template>
   <div class="add">
     <el-dialog
-      title="添加"
+      :title="info.isAdd ? '添加' : '修改'"
       :visible.sync="info.isShow"
       width="40%"
       @close="cancel"
@@ -37,7 +37,10 @@
 
       <span slot="footer" class="dialog-footer">
         <el-button @click="cancel">取 消</el-button>
-        <el-button type="primary" @click="submit">添加</el-button>
+        <el-button type="primary" v-if="info.isAdd" @click="submit"
+          >添加</el-button
+        >
+        <el-button type="primary" v-else @click="edit">修改</el-button>
       </span>
     </el-dialog>
   </div>
@@ -46,6 +49,7 @@
 import { successAlert } from "@/utils/alert";
 import fetchData from "@/utils/fetchData";
 import typeList from "./option";
+import BASE_URL from "@/utils/env";
 export default {
   props: ["info"],
   components: {},
@@ -107,6 +111,34 @@ export default {
         this.info.isShow = false;
         this.$emit("updateData",this.form.type);
         successAlert(uploadRes.outMsg);
+      }
+    },
+    //!获取单条
+    async getOne(id) {
+      let res = await fetchData({
+        url: "/product/list/" + id
+      });
+      for (let i in this.form) {
+        for (let j in res.data) {
+          if (i == j) {
+            this.form[i] = res.data[j];
+          }
+        }
+      }
+      this.form.id = id;
+      this.form.type = res.data.type.name;
+      this.imgUrl = BASE_URL + "/attachment/get_file/" + res.data.fileName;
+    },
+    async edit(){
+      let res = await fetchData({
+        url: "/product/update/",
+        data: this.form
+      });
+      if (res.outCode == 1) {
+        this.info.isShow = false;
+        this.$emit("updateData", this.form.type);
+        successAlert(res.outMsg);
+        this.cancel();
       }
     }
   },

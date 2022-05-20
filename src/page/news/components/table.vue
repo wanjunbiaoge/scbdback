@@ -7,7 +7,12 @@
       :row-style="{ height: '300px' }"
       border
     >
-      <el-table-column prop="id" width="50" label=" 序号"> </el-table-column>
+       <el-table-column prop="seqNumber" align="center" width="100" label=" 修改排序号">
+        <template slot-scope="scope">
+          <el-input size="small" v-model="scope.row.seqNumber" style="width: 70%"></el-input>
+          <el-button type="primary" size="small" @click="changeSeqNumber(scope.row.id,scope.row.seqNumber)" style="marginTop:10px">修改</el-button>
+        </template>
+      </el-table-column>
       <el-table-column prop="title" width="150" label=" 标题">
       </el-table-column>
       <el-table-column prop="source" width="150" label="来源">
@@ -58,7 +63,10 @@ export default {
     },
     edit(id) {
       this.$emit("edit", id);
-    }
+    },
+    async changeSeqNumber(id, seqNumber) {
+      this.$emit("changeSeqNumber", id, seqNumber);
+    },
   },
   created() {},
   mounted() {}

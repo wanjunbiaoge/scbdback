@@ -114,7 +114,7 @@ export default {
       });
       if (uploadRes) {
         this.info.isShow = false;
-        this.$emit("updateData");
+        this.$emit("updateData",this.form.aptitudeType);
         successAlert(uploadRes.outMsg);
       }
     }

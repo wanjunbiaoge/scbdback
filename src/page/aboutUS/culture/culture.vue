@@ -46,11 +46,8 @@ export default {
       //图片处理
       editor.config.uploadImgServer = BASE_URL + "/attachment/rtf_upload";
       editor.config.uploadFileName = "files";
-      editor.config.uploadImgHooks = {
-        // 图片上传并返回了结果，图片插入已成功
-        success: function(xhr) {
-          console.log("success", xhr);
-        }
+      editor.config.uploadImgHeaders = {
+        "x-access-token": sessionStorage.getItem("x-access-token") // 设置请求头
       };
       // 配置 onchange 回调函数
       editor.config.onchange = newHtml => {

@@ -14,7 +14,7 @@ const fetchDataLogin = axios.create({
 fetchDataLogin.interceptors.response.use(function (response) {
   const res = response.data;
   if (res.outCode === 1) {
-    localStorage.setItem("x-access-token", response.headers["x-access-token"]);
+    sessionStorage.setItem("x-access-token", response.headers["x-access-token"]);
     return res;
   } else {
     return warningAlert(res.outMsg);

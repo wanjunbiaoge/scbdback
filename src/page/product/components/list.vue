@@ -14,7 +14,7 @@
           :value="item.value"
         ></el-option>
       </el-select>
-      <Table @del="del" :list="list" />
+      <Table @edit='edit' @del="del" @changeSeqNumber='changeSeqNumber' :list="list" />
     </div>
   </div>
 </template>
@@ -69,6 +69,17 @@ export default {
         successAlert(res.outMsg);
         this.getTableData(this.type);
       });
+    },
+    async changeSeqNumber(id,seqNumber) {
+      let res = await fetchData({
+        url: "/product/sort/" + `${id}/${seqNumber}`
+      });
+      if (!res) return;
+      successAlert(res.outMsg);
+      this.getTableData(this.type);
+    },
+    async edit(id){
+      this.$emit('edit',id)
     }
   },
 

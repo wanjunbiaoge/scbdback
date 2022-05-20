@@ -13,7 +13,7 @@
         :value="item.value"
       ></el-option>
     </el-select>
-    <Table :list="list" @del="del" @edit="edit" />
+    <Table @changeSeqNumber='changeSeqNumber' :list="list" @del="del" @edit="edit" />
     <Pagenation :pagenation="pagenation" :getTableData="getTableData" />
   </div>
 </template>
@@ -89,6 +89,16 @@ export default {
     //!编辑
     edit(id) {
       this.$emit("edit", id);
+    },
+    //!修改排序
+     async changeSeqNumber(id,seqNumber) {
+       console.log(1);
+      let res = await fetchData({
+        url: "/news/sort/" + `${id}/${seqNumber}`
+      });
+      if (!res) return;
+      successAlert(res.outMsg);
+      this.getTableData(this.type);
     }
   },
 

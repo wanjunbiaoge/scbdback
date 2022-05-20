@@ -1,17 +1,19 @@
 <template>
   <div class="list">
-    <div class="left">
-      <div class="name">行业荣誉和地位</div>
-      <Table @del="del" :list="leftList" />
-    </div>
-    <div class="middle">
-      <div class="name">管理体系认证证书</div>
-      <Table @del="del" :list="middleList" />
-    </div>
-    <div class="right">
-      <div class="name">知识产权专利</div>
-      <Table @del="del" :list="rightList" />
-    </div>
+    <el-select
+      v-model="type"
+      placeholder="请选择类型"
+      @change="changeType"
+      class="typeInput"
+    >
+      <el-option
+        v-for="item in aptitudeTypeList"
+        :key="item.value"
+        :label="item.aptitudeName"
+        :value="item.value"
+      ></el-option>
+    </el-select>
+    <Table @del="del" @changeSeqNumber='changeSeqNumber' :list="list" />
   </div>
 </template>
 <script>
@@ -25,39 +27,42 @@ export default {
   },
   data() {
     return {
-      leftList: [],
-      middleList: [],
-      rightList: []
+      list: [],
+      type: "APTITUDE_STATUS",
+      aptitudeTypeList: [
+        {
+          aptitudeName: "行业地位和荣誉",
+          value: "APTITUDE_STATUS"
+        },
+        {
+          aptitudeName: "管理体系认证证书",
+          value: "APTITUDE_CERTIFICATE"
+        },
+        {
+          aptitudeName: "知识产权专利",
+          value: "APTITUDE_PATENT"
+        }
+      ]
     };
   },
   computed: {},
   methods: {
-    async getTableData() {
-      let resleft = await fetchData({
+    changeType(value) {
+      this.getTableData(value);
+    },
+    async getTableData(info) {
+      this.type = info;
+      let res = await fetchData({
         url: "/company_aptitude/list",
-        data: { aptitudeType: "APTITUDE_STATUS" }
+        data: { aptitudeType: info }
       });
-      let resmiddle = await fetchData({
-        url: "/company_aptitude/list",
-        data: { aptitudeType: "APTITUDE_CERTIFICATE" }
-      });
-      let resright = await fetchData({
-        url: "/company_aptitude/list",
-        data: { aptitudeType: "APTITUDE_PATENT" }
-      });
-      if (!resleft && !resmiddle && !resmiddle) return;
-      this.leftList = resleft.data;
-      this.middleList = resmiddle.data;
-      this.rightList = resright.data;
-      this.leftList.map(item => {
+      if (!res) return;
+      this.list = res.data;
+
+      this.list.map(item => {
         item.fileName = "/attachment/get_file/" + item.fileName;
       });
-      this.middleList.map(item => {
-        item.fileName = "/attachment/get_file/" + item.fileName;
-      });
-      this.rightList.map(item => {
-        item.fileName = "/attachment/get_file/" + item.fileName;
-      });
+
     },
     del(id) {
       this.$confirm("确定删除吗？", "提示", {
@@ -72,32 +77,36 @@ export default {
         successAlert(res.outMsg);
         this.getTableData();
       });
+    },
+     async changeSeqNumber(id,seqNumber) {
+      let res = await fetchData({
+        url: "/company_aptitude/sort/" + `${id}/${seqNumber}`
+      });
+      if (!res) return;
+      successAlert(res.outMsg);
+      this.getTableData(this.type);
     }
   },
   created() {
-    this.getTableData();
+    this.getTableData(this.type);
   },
   mounted() {}
 };
 </script>
 <style lang="less" scoped>
 .list {
-  display: flex;
-  justify-content: space-between;
-  .left,
-  .middle,
-  .right {
-    width: 33%;
-  }
+  position: relative;
   img {
     width: 600px;
     height: auto;
   }
-  .name {
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 10px;
+  .typeInput {
+    position: absolute;
+    top: -60px;
+    left: 100px;
+  }
+  .table {
+    margin-top: 20px;
   }
 }
 </style>

@@ -106,11 +106,11 @@ router.beforeEach((to, from, next) => {
     next();
     return;
   }
-  console.log(localStorage.getItem("x-access-token"));
+  console.log(sessionStorage.getItem("x-access-token"));
   // 2、如果去的是其他页面，就验证token是否存在，如果存在表示已经登陆过了可以放行
   if (
-    localStorage.getItem("x-access-token") !== "undefined" &&
-    localStorage.getItem("x-access-token") !== null
+    sessionStorage.getItem("x-access-token") !== "undefined" &&
+    sessionStorage.getItem("x-access-token") !== null
   ) {
     next();
     return;

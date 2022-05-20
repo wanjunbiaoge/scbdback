@@ -128,7 +128,7 @@ export default {
       this.editor.config.uploadImgServer = BASE_URL + "attachment/rtf_upload";
       this.editor.config.uploadFileName = "files";
       this.editor.config.uploadImgHeaders = {
-        "x-access-token": localStorage.getItem("x-access-token") // 设置请求头
+        "x-access-token": sessionStorage.getItem("x-access-token") // 设置请求头
       };
       //~ 配置 onchange 回调函数
       this.editor.config.onchange = newHtml => {

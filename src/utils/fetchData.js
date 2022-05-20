@@ -11,7 +11,7 @@ const fetchData = axios.create({
 });
 
 fetchData.interceptors.request.use((request) => {
-  request.headers["x-access-token"] = localStorage.getItem("x-access-token")
+  request.headers["x-access-token"] = sessionStorage.getItem("x-access-token")
   return request
 });
 
